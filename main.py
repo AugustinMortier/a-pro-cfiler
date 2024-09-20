@@ -21,7 +21,7 @@ for apro_file in track(apro_files, description="Processing"):
     })
     
     # convert time: from milliseconds to days
-    ds = _convert_time(ds, 'ms', 'D')
+    ds = _convert_time(ds)
     
     # convert int64 to int32
     encoding = {}
