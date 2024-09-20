@@ -30,4 +30,4 @@ for apro_file in track(apro_files, description="Processing"):
             encoding[varname] = {"dtype": np.int32}
     
     # write the file
-    #ds.to_netcdf(apro_file, mode='w', encoding=encoding)
+    ds.to_netcdf(apro_file, mode='w', encoding=encoding)
