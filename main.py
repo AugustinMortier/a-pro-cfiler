@@ -1,6 +1,7 @@
 import glob
 import numpy as np
 from rich.progress import track
+import shutil
 import sys
 import xarray as xr
 
@@ -30,4 +31,5 @@ for apro_file in track(apro_files, description="Processing"):
             encoding[varname] = {"dtype": np.int32}
     
     # write the file
-    ds.to_netcdf(apro_file, mode='w', encoding=encoding)
+    ds.to_netcdf("tmp.nc", mode='w', encoding=encoding)
+    shutil.move("tmp.nc", apro_file)
