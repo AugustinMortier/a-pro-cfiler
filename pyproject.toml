@@ -1,0 +1,18 @@
+[tool.poetry]
+name = "a-pro-cfiler"
+version = "0.1.0"
+description = ""
+authors = ["augustinm <augustinm@met.no>"]
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = "^3.10"
+rich = "^13.8.1"
+xarray = "^2024.9.0"
+netcdf4 = "^1.7.1.post2"
+numpy = "^2.1.1"
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
