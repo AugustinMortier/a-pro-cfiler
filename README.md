@@ -9,6 +9,7 @@ Objective: make A-Profiles files CF compliant
     `pip install .`
 
 - run conversion script
-  - `poetry shell`
-  - `python -m main {data_path}/**/AP*.nc`
+  - with poetry
+    - `poetry shell`
+    - `python -m main {data_path}/**/AP*.nc`
 
