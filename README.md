@@ -6,6 +6,6 @@ Objective: make A-Profiles files CF compliant
 `poetry install .`
 
 - run conversion script
-`poetry shell`
-`python -m main {data_path}/**/AP*.nc`
+  - `poetry shell`
+  - `python -m main {data_path}/**/AP*.nc`
 
