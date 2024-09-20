@@ -3,7 +3,10 @@
 Objective: make A-Profiles files CF compliant
 
 - installation
-`poetry install .`
+  - with poetry
+    `poetry install .`
+  - with pip
+    `pip install .`
 
 - run conversion script
   - `poetry shell`
