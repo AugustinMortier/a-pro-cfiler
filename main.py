@@ -17,6 +17,7 @@ for apro_file in track(apro_files, description="Processing"):
     ds = xr.open_dataset(apro_file, decode_times=False)
 
     # add altitude direction
+    if not "altitude" in ds: continue
     ds["altitude"] = ds["altitude"].assign_attrs({
         'positive': "up"
     })
