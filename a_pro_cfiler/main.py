@@ -12,6 +12,7 @@ path = sys.argv[1]
 
 # list all files
 apro_files =  glob.glob(path, recursive=True)
+print(apro_files)
 
 for apro_file in track(apro_files, description="Processing"):
     # open the file
@@ -35,6 +36,9 @@ for apro_file in track(apro_files, description="Processing"):
             if var.dtype == np.int64:
                 encoding[varname] = {"dtype": np.int32}
         
+        # convert also the quality_flag's variable flag_values attribute also to NC_INT instead of NC_INT64
+        ds["quality_flag"] = ds.quality_flag.assign_attrs({'flag_values': np.array([0,1,2], dtype=np.int32)})
+
         # write the file
         ds.to_netcdf(tmpfile, mode='w', encoding=encoding)
 
