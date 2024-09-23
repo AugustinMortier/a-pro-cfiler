@@ -21,7 +21,8 @@ for apro_file in track(apro_files, description="Processing"):
     with xr.open_dataset(apro_file, decode_times=False) as ds:
 
         # add altitude direction
-        if not "altitude" in ds: continue
+        if "altitude" not in ds: 
+            continue
         ds["altitude"] = ds["altitude"].assign_attrs({
             'positive': "up"
         })
@@ -33,9 +34,13 @@ for apro_file in track(apro_files, description="Processing"):
         # convert int64 to int32
         encoding = {}
         for varname, var in ds.variables.items():
+            if varname == "time": 
+                continue
             if var.dtype == np.int64:
-                encoding[varname] = {"dtype": np.int32}
-        
+                encoding[varname] = {"dtype": np.int32, "zlib": True, "chunksizes": var.shape}
+            if varname in ["extinction", "clouds_bases", "clouds_peaks", "clouds_tops"]:
+                encoding[varname] = {"zlib": True, "chunksizes": var.shape}
+
         # convert also the quality_flag's variable flag_values attribute also to NC_INT instead of NC_INT64
         ds["quality_flag"] = ds.quality_flag.assign_attrs({'flag_values': np.array([0,1,2], dtype=np.int32)})
 
